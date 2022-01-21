@@ -1,0 +1,229 @@
+@keyframes move {
+    0%{
+        transform: translateY(0);
+    }
+    25%{
+        transform: translateY(-20%);
+    }
+    50%{
+        transform: translateY(-40%);
+    }
+    75%{
+        transform: translateY(-60%); /*자기자신의 너비또는 높이기준 퍼센트가져옴 */
+    }
+    100%{
+        transform: translateY(-80%);
+    }
+}
+
+body, ul, li, h1, h2, h3{
+    margin: 0px;
+    padding: 0;
+    list-style: none;
+    color: inherit;
+}
+h1,h2,h3{
+    font-size: 100%;
+    font-weight: normal;
+}
+p{
+    font-size: 17px;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+body{
+    background-color: #222;
+    color: #999;
+}
+
+.profile-img{
+    background-image: url("../img/ptmain.jpg");
+    background-size: cover; /*사진 원본 유지 사진의 높이 및 너비로 사이즈를 계산*/
+    background-position: center; /*사진의 가운데 보여줌*/
+    padding-top: 56.25%; /* 16 : 9 */
+}
+
+.profile{
+    padding: 5%; /* %는 반응형 웹에서 좋다.*/
+    min-height: 2100px;
+}
+
+.profile-header, .profile-section, .profile-footer{
+    padding-bottom: 8%;
+}
+
+.profile-section h2, .profile-footer h2{
+    font-size: 26px;
+    border-top: 3px solid ;
+    color: bisque;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background-color: #222;
+    box-shadow: 0 0 10px 10px #222;
+}
+
+
+
+.name{
+    font-size: 38px;
+    line-height: 1.5; /*높이를 지정 fontsize * lineheight*/
+    font-style: italic;
+    margin-bottom: 50px;
+    position: sticky;
+    top: -1.5em;
+    background-color: #222;
+    box-shadow: 0 0 10px 10px #222; /*밖 그림자, x, y, 뿌옇게, 진하기 */
+}
+
+.hope-job{
+    display: inline-block;
+    color: white;
+    vertical-align: top;
+    overflow: hidden; /*넘치느것을 자르겠다.*/
+    margin-bottom: 20px;
+    height: 1.5em; /*1배*/ 
+    padding-right: 0.4em;
+    position: relative;
+}
+
+.hope-job::after{ /*자식을 만들어서 그림자 효과를 넣습니다.*/
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-right: -1em;
+    box-shadow: inset 0 0 10px 5px #999; /*안쪽 그림자, x, y, 뿌옇게, 진하기 */
+}
+.hope-job-list{
+    animation-name: move;
+    margin-left: 10px;
+    animation-duration: 7s; /*시간*/
+    animation-iteration-count: infinite;
+
+}
+
+.name-title{
+    font-size: 1.5em; /*자신의 name부모의 fontsize 30이 1.7배된다. */
+    line-height: 1;
+    color: green;
+    margin-left: -0.05em;
+    position: relative;
+}
+
+.name-sub{
+    font-size: 1.85em;
+    color: rgb(185, 110, 0);
+}
+
+.skills li{
+    background: rgb(23,0,36);
+background: linear-gradient(90deg, rgba(23,0,36,1) 3%, rgba(192,0,255,0.8970938717283788) 35%, rgba(119,0,238,1) 100%);    
+    color: white;
+    padding: 0.8em 0.5em; /*em을 쓰면 글자가 커져도 같이 커진다.*/
+    margin: 0.3em 0; /*상하 좌우 */
+    border-radius: 50px;
+    box-sizing: border-box; /*패딩 +-해줌*/
+}
+.skills li::before{
+    content: attr(data-score);
+    float: right;
+}
+.skills li[data-score="30%"] { /*속성선택자*/
+    width: 40%; /*padding이 있어 30%보다 크다.*/
+}
+.skills li[data-score="40%"] {width: 50%;} /*모바일 버전도 맞추기 위해 10씩업 했습니다.*/
+.skills li[data-score="10%"] {width: 20%;}
+.skills li[data-score="20%"] {width: 30%;}
+.skills li[data-score="75%"] {width: 75%;}
+
+.main-title{
+    font-size: 1.4rem; /*html기본 사이즈 16px 에 1.5배가된다. */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.main-sub{
+    padding-bottom: 10px;
+}
+.main-sub:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+.main-title li:last-child{
+    padding-bottom: 0;
+}
+.main-title h3{
+    color: skyblue;
+}
+.profile-footer h4{
+    font-size: 20px;
+    color: bisque;
+}
+
+.icon{
+    margin-top: 10px;
+}
+.icon a{
+    background-image: url("../img/i3con.png"); /*CSS 스프라이트 기법 그림을 하나로 놓고 속성을 이용해 특정 부분을보여줌*/
+    width: 70px; /*210 140 기준*/
+    height: 68px; /*크기설정*/
+    display: inline-block; 
+    text-indent: -9999px;
+}
+.icon a.git     {background-position: left top;}
+.icon a.tistory {background-position: center top;}
+.icon a.email   {background-position: right top;}
+
+.icon a:hover   {background-position-y: bottom;}
+
+@media (min-width: 768px){
+    .profile-img{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 50vw; /*viewport width*/
+        height: 100vh;
+        padding: 0;
+    }
+    .profile{
+        margin-left: 50vw;
+    }
+    .name{
+        font-size: 3.3vw;
+    }
+    .main-title{
+        margin: 0 -20px; /*사이 공간 만들면서 생긴 빈공간 채워주기*/
+    }
+    .main-sub{
+        width: 50%;
+        padding: 0 20px; /*사이 공간 만들기*/
+        box-sizing: border-box;
+    }
+    .main-sub:nth-child(even){
+        margin-left: auto;
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+}
+@media(max-width : 1280px){
+    .main-title{
+        margin: 0 -20px; /*사이 공간 만들면서 생긴 빈공간 채워주기*/
+    }
+    .main-sub{
+        width: 50%;
+        padding: 0 20px; /*사이 공간 만들기*/
+        box-sizing: border-box;
+    }
+    .main-sub:nth-child(even){
+        margin-left: auto;
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+}
